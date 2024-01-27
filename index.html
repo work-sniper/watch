@@ -3,39 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Link Page</title>
+  <title>Dynamic Content Example</title>
   <style>
-    /* Add any additional styling as needed */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+    /* تحديد نمط تقسيم الشاشة */
+    .split-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      height: 100vh;
+      width: 100vw;
     }
-    #content {
-      margin-top: 20px;
+
+    /* تحديد سمات الإطار */
+    .frame {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      display: none; /* إخفاء الإطار في البداية */
+    }
+
+    /* عرض الإطار عند النقر على العنصر <a> */
+    #openLinks:checked + .split-container .frame {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <a href="#" id="multiLink">Click me</a>
-  <div id="content">Initial content</div>
+<!-- عنصر الفتح -->
+<input type="checkbox" id="openLinks">
+<label for="openLinks">فتح الروابط</label>
 
-  <script>
-    document.getElementById("multiLink").addEventListener("click", function(event) {
-      event.preventDefault();
+<!-- عنصر الرابط -->
+<a href="javascript:void(0);" id="openLinksLabel">فتح الروابط</a>
 
-      this.innerHTML = "Links opened!";
-      document.getElementById("content").innerHTML = "New content after clicking the link.";
+<!-- تحديد الشاشة إلى 4 أقسام -->
+<div class="split-container">
+  <!-- إطار المحتوى الأول -->
+  <div id="frame1" class="frame"></div>
+  <!-- إطار المحتوى الثاني -->
+  <div id="frame2" class="frame"></div>
+  <!-- إطار المحتوى الثالث -->
+  <div id="frame3" class="frame"></div>
+  <!-- إطار المحتوى الرابع -->
+  <div id="frame4" class="frame"></div>
+</div>
 
-      const link1 = "https://work-sniper.com";
-      const link2 = "https://work-sniper.com";
-      const link3 = "https://work-sniper.com";
-      const link4 = "https://work-sniper.com";
+<script>
+document.getElementById('openLinks').addEventListener('change', function() {
+  if (this.checked) {
+    // الروابط التي تريد فتحها
+    var links = [
+      'https://work-sniper.com',
+      'https://work-sniper.com',
+      'https://work-sniper.com',
+      'https://work-sniper.com'
+    ];
 
-      const combinedLinks = `${link1},${link2},${link3},${link4}`;
-  
-      window.location.href = combinedLinks;
-    });
-  </script>
+    // قسم الشاشة إلى 4 أقسام
+    var splitContainer = document.querySelector('.split-container');
+    splitContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    splitContainer.style.gridTemplateRows = 'repeat(2, 1fr)';
+
+    // عرض محتوى الروابط في كل إطار
+    for (var i = 0; i < links.length; i++) {
+      var frame = document.getElementById('frame' + (i + 1));
+      frame.innerHTML = '<iframe src="' + links[i] + '" width="100%" height="100%" frameborder="0"></iframe>';
+    }
+  }
+});
+</script>
+
 </body>
 </html>
