@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زيادة النقرات</title>
+    <title>زيادة الأرباح</title>
 </head>
 <body>
 
-<a href="#" onclick="increaseClicks(); return false;">نقر هنا</a>
+<a id="advertisementLink" href="https://www.toprevenuegate.com/sjphgy40?key=e0588c577af29dd9e75f59e3b637abf3" target="_blank">انقر هنا</a>
 
 <script>
-    var clickCount = 1;
+    // عدد النقرات الذي تريد تحقيقه
+    var targetClicks = 4;
 
-    function increaseClicks() {
-        // زيادة عدد النقرات إلى 4 في نفس الوقت
-        clickCount += 3; // قمنا بإضافة 3 لأن النقرة الأولى تمثل القيمة الأولية
+    // تأخير بين كل نقرة بالميللي ثانية
+    var delay = 1000;
 
-        // يمكنك إضافة أكواد أخرى هنا لمعالجة النقرات إذا لزم الأمر
+    // متغير لتتبع عدد النقرات
+    var clickCount = 0;
 
-        // عرض عدد النقرات في الصفحة
-        alert('تمت الزيادة، عدد النقرات الآن: ' + clickCount);
+    function simulateClick() {
+        var link = document.getElementById('advertisementLink');
+
+        // إذا لم يتم الوصول إلى عدد النقرات المستهدف، قم بالنقر
+        if (clickCount < targetClicks) {
+            link.click();
+            clickCount++;
+            setTimeout(simulateClick, delay);
+        }
     }
+
+    // بدء المحاكاة عند تحميل الصفحة
+    window.onload = function() {
+        simulateClick();
+    };
 </script>
 
 </body>
