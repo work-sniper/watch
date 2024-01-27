@@ -20,6 +20,7 @@
       height: 100%;
       text-decoration: none;
       color: inherit;
+      cursor: pointer;
     }
 
     .box .content {
@@ -35,7 +36,7 @@
       display: block;
     }
 
-    .box:nth-child(1) { top: 0; }
+    .box:nth-child(1) { top: 0; width:100%;heght:100px}
     .box:nth-child(2) { top: 120px; }
     .box:nth-child(3) { top: 240px; }
     .box:nth-child(4) { top: 360px; }
@@ -43,32 +44,38 @@
   </style>
 </head>
 <body>
-  <a>open</a>
+  <a>oppppen</a>
   <div class="box" id="box1">
-    <a href="https://work-sniper.com" onclick="toggleContent('box1')">Div 1</a>
-    <div class="content">محتوى الرابط 1</div>
+    <a onclick="fetchContent('https://work-sniper.com')">Div 1</a>
+    <div class="content" id="content1"></div>
   </div>
   <div class="box" id="box2">
-    <a href="https://work-sniper.com" onclick="toggleContent('box2')">Div 2</a>
-    <div class="content">محتوى الرابط 2</div>
+    <a onclick="fetchContent('link2')">Div 2</a>
+    <div class="content" id="content2"></div>
   </div>
   <div class="box" id="box3">
-    <a href="https://work-sniper.com" onclick="toggleContent('box3')">Div 3</a>
-    <div class="content">محتوى الرابط 3</div>
+    <a onclick="fetchContent('link3')">Div 3</a>
+    <div class="content" id="content3"></div>
   </div>
   <div class="box" id="box4">
-    <a href="https://work-sniper.com" onclick="toggleContent('box4')">Div 4</a>
-    <div class="content">محتوى الرابط 4</div>
+    <a onclick="fetchContent('link4')">Div 4</a>
+    <div class="content" id="content4"></div>
   </div>
   <div class="box" id="box5">
-    <a href="https://work-sniper.com" onclick="toggleContent('box5')">Div 5</a>
-    <div class="content">محتوى الرابط 5</div>
+    <a onclick="fetchContent('link5')">Div 5</a>
+    <div class="content" id="content5"></div>
   </div>
 
   <script>
-    function toggleContent(boxId) {
-      var box = document.getElementById(boxId);
-      box.classList.toggle('open');
+    async function fetchContent(link) {
+      try {
+        const response = await fetch(link);
+        const data = await response.text();
+        const contentContainer = document.getElementById('content' + link.charAt(link.length-1));
+        contentContainer.innerHTML = data;
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
     }
   </script>
 </body>
