@@ -3,27 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عرض محتوى وتحميل ملف</title>
+    <title>عرض محتوى الروابط</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .content {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<iframe id="externalContent" src="https://work-sniper.github.io/ads/" width="800" height="600"></iframe>
+<div class="container">
+    <div class="content" id="content1"></div>
+    <div class="content" id="content2"></div>
+    <div class="content" id="content3"></div>
+    <div class="content" id="content4"></div>
+    <div class="content" id="content5"></div>
+    <div class="content" id="content6"></div>
+</div>
 
 <script>
-    window.onload = function() {
-        // انتظر حتى يتم تحميل المحتوى الخارجي في iframe
-        var iframe = document.getElementById('externalContent');
-        iframe.onload = function() {
-            // تحميل الملف تلقائيًا
-            var fileUrl = "img8.jpg";
-            var anchor = document.createElement("a");
-            anchor.href = fileUrl;
-            anchor.download = "img8.jpg";
-            document.body.appendChild(anchor);
-            anchor.click();
-            document.body.removeChild(anchor);
-        };
-    };
+    function fetchAndDisplayContent(url, containerId) {
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById(containerId).innerHTML = data;
+            })
+            .catch(error => console.error('حدث خطأ: ', error));
+    }
+
+    // استخدام الدالة لجلب وعرض محتوى لكل رابط
+    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content1');
+    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content2');
+    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content3');
+    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content4');
+    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content5');
+    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content6');
 </script>
 
 </body>
