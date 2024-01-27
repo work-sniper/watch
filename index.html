@@ -3,29 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عرض محتوى الروابط</title>
-    <style>
-        .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .content {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-    </style>
+    <title>فتح 6 روابط عند نقرة وعرض محتواها</title>
 </head>
 <body>
 
-<div class="container">
-    <div class="content" id="content1"></div>
-    <div class="content" id="content2"></div>
-    <div class="content" id="content3"></div>
-    <div class="content" id="content4"></div>
-    <div class="content" id="content5"></div>
-    <div class="content" id="content6"></div>
-</div>
+<a href="#" onclick="openAndDisplayLinks(); return false;">نقر هنا لفتح الروابط</a>
+
+<div id="content"></div>
 
 <script>
     function fetchAndDisplayContent(url, containerId) {
@@ -37,13 +21,21 @@
             .catch(error => console.error('حدث خطأ: ', error));
     }
 
-    // استخدام الدالة لجلب وعرض محتوى لكل رابط
-    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content1');
-    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content2');
-    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content3');
-    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content4');
-    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content5');
-    fetchAndDisplayContent('https://work-sniper.github.io/ads/', 'content6');
+    function openAndDisplayLinks() {
+        var links = [
+            'https://work-sniper.github.io/ads/',
+            'https://work-sniper.github.io/ads/',
+            'https://work-sniper.github.io/ads/',
+            'https://work-sniper.github.io/ads/',
+            'https://work-sniper.github.io/ads/',
+            'https://work-sniper.github.io/ads/'
+        ];
+
+        // جلب وعرض محتوى الروابط في نفس الصفحة
+        for (var i = 0; i < links.length; i++) {
+            fetchAndDisplayContent(links[i], 'content');
+        }
+    }
 </script>
 
 </body>
