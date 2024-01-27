@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زيادة الأرباح</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خمسة div</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #000;
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
-
-<a id="advertisementLink" href="https://www.toprevenuegate.com/zkqbrfncui?key=b420e84a1af19dbea721fa55b5148e4d" onclick="simulateClick();">انقر هنا</a>
-
-<script>
-    var targetClicks = 4; // عدد النقرات المستهدف
-    var delay = 1000; // تأخير بين كل نقرة بالميللي ثانية
-    var clickCount = 0; // متغير لتتبع عدد النقرات
-
-    function simulateClick() {
-        if (clickCount < targetClicks) {
-            var link = document.getElementById('advertisementLink');
-            link.click();
-            clickCount++;
-            setTimeout(simulateClick, delay);
-        }
-    }
-</script>
-
+  <div class="box">Div 1</div>
+  <div class="box">Div 2</div>
+  <div class="box">Div 3</div>
+  <div class="box">Div 4</div>
+  <div class="box">Div 5</div>
 </body>
 </html>
