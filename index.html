@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نقرة واحدة لفتح 6 روابط وعرض المحتوى</title>
+    <title>نقرات متزامنة على نفس الرابط</title>
 </head>
 <body>
 
-<a href="#" onclick="openAndDisplayLinks(); return false;">نقر هنا لفتح الروابط</a>
+<a href="#" onclick="openAndDisplayLinkConcurrently(); return false;">نقر هنا لفتح الرابط متزامناً</a>
 
-<div class="content" id="content1"></div>
-<div class="content" id="content2"></div>
-<div class="content" id="content3"></div>
-<div class="content" id="content4"></div>
-<div class="content" id="content5"></div>
-<div class="content" id="content6"></div>
+<div class="content" id="content"></div>
 
 <script>
     function fetchAndDisplayContent(url, containerId) {
-        fetch(url)
+        return fetch(url)
             .then(response => response.text())
             .then(data => {
                 document.getElementById(containerId).innerHTML = data;
@@ -26,20 +21,20 @@
             .catch(error => console.error('حدث خطأ: ', error));
     }
 
-    function openAndDisplayLinks() {
-        var links = [
-            'https://work-sniper.github.io/ads/',
-            'https://work-sniper.github.io/ads/',
-            'https://work-sniper.github.io/ads/',
-            'https://work-sniper.github.io/ads/',
-            'https://work-sniper.github.io/ads/',
-            'https://work-sniper.github.io/ads/'
-        ];
+    function openAndDisplayLinkConcurrently() {
+        var link = 'https://www.toprevenuegate.com/sjphgy40?key=e0588c577af29dd9e75f59e3b637abf3';
+        var repeatCount = 4;
 
-        // جلب وعرض محتوى الروابط في نفس الصفحة
-        for (var i = 0; i < links.length; i++) {
-            fetchAndDisplayContent(links[i], 'content' + (i + 1));
+        // تكرار النقر على نفس الرابط بشكل متزامن
+        var promises = [];
+        for (var i = 0; i < repeatCount; i++) {
+            promises.push(fetchAndDisplayContent(link, 'content'));
         }
+
+        // تنفيذ العمليات بشكل متزامن
+        Promise.all(promises)
+            .then(() => console.log('تم الانتهاء من النقرات بشكل متزامن'))
+            .catch(error => console.error('حدث خطأ: ', error));
     }
 </script>
 
