@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<a id="advertisementLink" href="https://www.toprevenuegate.com/sjphgy40?key=e0588c577af29dd9e75f59e3b637abf3">انقر هنا</a>
+<a id="advertisementLink" href="javascript:void(0);" onclick="simulateClick();">انقر هنا</a>
 
 <script>
     // عدد النقرات الذي تريد تحقيقه
@@ -20,20 +20,13 @@
     var clickCount = 0;
 
     function simulateClick() {
-        var link = document.getElementById('advertisementLink');
-
         // إذا لم يتم الوصول إلى عدد النقرات المستهدف، قم بالنقر
         if (clickCount < targetClicks) {
-            link.click();
+            window.location.href = "https://www.toprevenuegate.com/sjphgy40?key=e0588c577af29dd9e75f59e3b637abf3";
             clickCount++;
             setTimeout(simulateClick, delay);
         }
     }
-
-    // بدء المحاكاة عند تحميل الصفحة
-    window.onload = function() {
-        simulateClick();
-    };
 </script>
 
 </body>
