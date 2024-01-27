@@ -20,6 +20,7 @@
       height: 100%;
       text-decoration: none;
       color: inherit;
+      cursor: pointer;
     }
 
     .box .content {
@@ -40,34 +41,52 @@
     .box:nth-child(3) { top: 240px; }
     .box:nth-child(4) { top: 360px; }
     .box:nth-child(5) { top: 480px; }
+
+    #openButton {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div class="box" id="box1">
-    <a href="https://work-sniper.com" onclick="toggleContent('box1')">Div 1</a>
-    <div class="content">محتوى الرابط 1</div>
+    <a onclick="loadContent('https://work-sniper.com')">Div 1</a>
+    <div class="content" id="content1"></div>
   </div>
   <div class="box" id="box2">
-    <a href="#" onclick="toggleContent('box2')">Div 2</a>
-    <div class="content">محتوى الرابط 2</div>
+    <a onclick="loadContent('link2')">Div 2</a>
+    <div class="content" id="content2"></div>
   </div>
   <div class="box" id="box3">
-    <a href="#" onclick="toggleContent('box3')">Div 3</a>
-    <div class="content">محتوى الرابط 3</div>
+    <a onclick="loadContent('link3')">Div 3</a>
+    <div class="content" id="content3"></div>
   </div>
   <div class="box" id="box4">
-    <a href="#" onclick="toggleContent('box4')">Div 4</a>
-    <div class="content">محتوى الرابط 4</div>
+    <a onclick="loadContent('link4')">Div 4</a>
+    <div class="content" id="content4"></div>
   </div>
   <div class="box" id="box5">
-    <a href="#" onclick="toggleContent('box5')">Div 5</a>
-    <div class="content">محتوى الرابط 5</div>
+    <a onclick="loadContent('link5')">Div 5</a>
+    <div class="content" id="content5"></div>
   </div>
 
+  <a id="openButton" onclick="openAllContent()">Open</a>
+
   <script>
-    function toggleContent(boxId) {
-      var box = document.getElementById(boxId);
-      box.classList.toggle('open');
+    function loadContent(link) {
+      const contentContainer = document.getElementById('content' + link.charAt(link.length - 1));
+      contentContainer.innerHTML = 'محتوى الرابط ' + link.charAt(link.length - 1);
+      const box = document.getElementById('box' + link.charAt(link.length - 1));
+      box.classList.add('open');
+    }
+
+    function openAllContent() {
+      const boxes = document.querySelectorAll('.box');
+      boxes.forEach(box => {
+        box.classList.add('open');
+      });
     }
   </script>
 </body>
