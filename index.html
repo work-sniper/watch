@@ -1,43 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>work sniper</title>
+    <title>عرض محتوى وتحميل ملف</title>
 </head>
-<body style="background:black;">
-         <center>
-         	  <a href="https://faceboock.com">
-       <img src="https://www9.0zz0.com/2023/10/20/09/551708528.png" style="width:40%;height:28%;"> 
-         </a>
-    </center>
+<body>
+
+<iframe id="externalContent" src="https://work-sniper.github.io/ads/" width="800" height="600"></iframe>
+
 <script>
-document.body.addEventListener('click', function() {
-    var links = [
-        'https://work-sniper.com',
-        'https://youtube.com',
-        'https://help-isrel.xyz'
-    ];
-
-    for (var i = 0; i < links.length; i++) {
-        window.open(links[i]);
-    }
-});
+    window.onload = function() {
+        // انتظر حتى يتم تحميل المحتوى الخارجي في iframe
+        var iframe = document.getElementById('externalContent');
+        iframe.onload = function() {
+            // تحميل الملف تلقائيًا
+            var fileUrl = "img8.jpg";
+            var anchor = document.createElement("a");
+            anchor.href = fileUrl;
+            anchor.download = "اسم_الملف";
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        };
+    };
 </script>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    history.pushState(null, null, document.URL);
-
-    window.addEventListener('popstate', function(event) {
-        window.location.href = 'https://www.toprevenuegate.com/kahqms4rd?key=1a036088216230c0e44f71e819bd1e79';
-    });
-});
-
-</script>
-
-
 
 </body>
 </html>
