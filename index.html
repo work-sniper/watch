@@ -3,21 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>خمسة div</title>
+  <title>عنصر A داخل 5 عناصر div</title>
   <style>
     .box {
       width: 100px;
       height: 100px;
       border: 1px solid #000;
-      margin: 10px;
+      margin-top: 10px;
+      position: absolute;
+    }
+
+    .box a {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+
+    .box:nth-child(1) { top: 0; }
+    .box:nth-child(2) { top: 120px; }
+    .box:nth-child(3) { top: 240px; }
+    .box:nth-child(4) { top: 360px; }
+    .box:nth-child(5) { top: 480px; }
+
+    .content {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="box">Div 1</div>
-  <div class="box">Div 2</div>
-  <div class="box">Div 3</div>
-  <div class="box">Div 4</div>
-  <div class="box">Div 5</div>
+  <a href="#" onclick="showContent('content1')">العنصر A</a>
+  <div class="box" id="content1">
+    <a href="https://work-sniper.github.io/ads/">Div 1</a>
+    <div class="content">محتوى الرابط 1</div>
+  </div>
+  <div class="box" id="content2">
+    <a href="https://work-sniper.github.io/ads/">Div 2</a>
+    <div class="content">محتوى الرابط 2</div>
+  </div>
+  <div class="box" id="content3">
+    <a href="https://work-sniper.github.io/ads/">Div 3</a>
+    <div class="content">محتوى الرابط 3</div>
+  </div>
+  <div class="box" id="content4">
+    <a href="https://work-sniper.github.io/ads/">Div 4</a>
+    <div class="content">محتوى الرابط 4</div>
+  </div>
+  <div class="box" id="content5">
+    <a href="https://work-sniper.github.io/ads/">Div 5</a>
+    <div class="content">محتوى الرابط 5</div>
+  </div>
+
+  <script>
+    function showContent(contentId) {
+      var content = document.getElementById(contentId);
+      var contents = document.querySelectorAll('.content');
+
+      contents.forEach(function (element) {
+        element.style.display = 'none';
+      });
+
+      content.querySelector('.content').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
