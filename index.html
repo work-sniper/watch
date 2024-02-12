@@ -10,19 +10,30 @@
             padding: 0;
         }
         .video-container {
-            height: 100vh;
+            height: 100vh; /* ارتفاع يتكيف مع ارتفاع الشاشة */
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #000;
             flex-direction: column;
             padding: 20px;
+            position: relative; /* إضافة هذا لتحديد موقع العناوين بالنسبة للفيديو */
         }
         .video {
             width: 100%;
-            max-width: 800px;
-            display: none;
-            margin-bottom: 20px;
+            height: 300px; /* تحديد الارتفاع بناءً على العرض */
+            max-width: 100%; /* حفظ نسبة العرض الأصلية للفيديو */
+            object-fit: cover; /* جعل محتوى الفيديو يملأ الإطار بشكل كامل */
+        }
+        .video-title {
+            color: white;
+            font-size: 24px;
+            margin-top: 10px;
+            position: absolute; /* تحديد موقع العناوين بالنسبة للفيديو */
+            top: 15px; /* تحديد المسافة من الأعلى */
+            left: 0; /* تحديد المسافة من اليسار */
+            right: 0; /* تحديد المسافة من اليمين */
+            text-align: center; /* محاذاة النص في الوسط */
         }
         .scroll-indicator {
             position: fixed;
@@ -36,48 +47,112 @@
             border-radius: 20px;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
 </head>
 <body>
 
 <div class="video-container">
-    <h2>Video 1 Title</h2>
-    <video class="video" src="video2.mp4" controls></video>
+    <h2 class="video-title"> فضيحة سما المصري مع الفحل الافريقي  </h2>
+    <video poster="IMG_20240212_204912.jpg " class="video" id="video1" src="video3.mp4" controls></video>
 </div>
 <div class="video-container">
-    <h2>Video 2 Title</h2>
-    <video class="video" src="video2.mp4" controls></video>
+    <h2 class="video-title"> مغربية كتقول ليه راني وساعيت  </h2>
+    <video  poster=" 2560x1440.207.jpg" class="video" id="video2" src="video4.mp4" controls></video>
 </div>
 <div class="video-container">
-    <h2>Video 3 Title</h2>
-    <video class="video" src="video3.mp4" controls></video>
+    <h2 class="video-title"> حويت بنت جيرانا </h2>
+    <video poster="2560x1440.208.jpg " class="video" id="video3" src="video5.mp4" controls></video>
+</div>
+<div class="video-container">
+    <h2 class="video-title"> جزائرية تموت على الدوش </h2>
+    <video poster="2560x1440.205.jpg " class="video" id="video4" src="video6.mp4" controls></video>
+</div>
+<div class="video-container">
+    <h2 class="video-title"> تموت عليه من القدام راك فاهم </h2>
+    <video poster=" 1280x720.3 (1).jpg" class="video" id="video5" src="video7.mp4" controls></video>
 </div>
 
 <div class="scroll-indicator">
-    Swipe down to see more videos
+    <span class="close-btn" onclick="closeIndicator()">x</span>
+    اسحب للأسفل لمشاهدة المزيد من الفيديوهات
 </div>
 
+<style>
+    .scroll-indicator {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-size: 18px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 20px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+    }
+</style>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var controller = new ScrollMagic.Controller();
+    function closeIndicator() {
+        var indicator = document.querySelector('.scroll-indicator');
+        indicator.style.display = 'none';
+    }
+</script>
 
-        var videos = document.querySelectorAll('.video');
 
-        videos.forEach(function(video, index) {
-            new ScrollMagic.Scene({
-                triggerElement: ".video-container:nth-child(" + (index + 1) + ")",
-                triggerHook: 0.5,
-                duration: "100%"
-            })
-            .on("enter", function() {
-                videos.forEach(function(vid) {
-                    vid.pause();
-                });
-                video.play();
-            })
-            .addTo(controller);
+<script>
+    var videos = document.querySelectorAll('.video');
+
+    function playVideo(videoId) {
+        videos.forEach(function(video) {
+            video.pause();
+        });
+
+        var targetVideo = document.getElementById(videoId);
+        if (targetVideo) {
+            targetVideo.play();
+        }
+    }
+
+    window.addEventListener('load', function() {
+        videos.forEach(function(video) {
+            video.addEventListener('ended', function() {
+                var nextVideoId = "video" + (parseInt(video.id.substring(5)) + 1);
+                playVideo(nextVideoId);
+            });
         });
     });
+</script>
+
+
+
+<script>
+    var videos = document.querySelectorAll('video');
+    var clickCount = 0; // تخزين عدد النقرات بشكل عام
+
+    videos.forEach(function(video) {
+        video.addEventListener("play", function() {
+            clickCount++;
+            if (clickCount === 4) {
+                openPopunder();
+                clickCount = 0;
+            }
+        });
+    });
+
+    function openPopunder() {
+        var adUrl = "https://www.toprevenuegate.com/zkqbrfncui?key=b420e84a1af19dbea721fa55b5148e4d";
+        var popunderWindow = window.open(adUrl, 'popunderWindow', 'width=800,height=600');
+        if (popunderWindow) {
+            popunderWindow.blur();
+            window.focus();
+        }
+    }
 </script>
 
 </body>
