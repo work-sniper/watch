@@ -3,87 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download GTA 5 for PPSSPP</title>
+    <title>TikTok-like Video Interface</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('https://www10.0zz0.com/2024/02/12/00/167048843.jpeg');
-            background-size: cover;
-            background-position: center;
             margin: 0;
             padding: 0;
         }
-        ..overlay {
-    background-color: rgba(0, 0, 0, 0.13); /* هنا تحديد الشفافية بقيمة 0.6 */
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-        .container {
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
+        .video-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            flex-direction: column;
+            padding: 20px;
         }
-        h1 {
-            color: #333;
-            font-size: 2.5em;
+        .video {
+            width: 100%;
+            max-width: 800px;
+            display: none;
+            margin-bottom: 20px;
         }
-        p {
-            color: #666;
-            line-height: 1.6;
-            font-size: 1.2em;
-        }
-        .download-button {
-            background-color: #007bff;
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 30px;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease;
-        }
-        .download-button:hover {
-            background-color: #0056b3;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
 </head>
 <body>
-    <div class="overlay">
-        <div class="container">
-            <h1>Get Ready for Adventure!</h1>
-            <p>Join the world of GTA 5 on your PPSSPP device now.</p>
-            <a onclick="showLocker()"  class="download-button" >Download Now</a>
-        </div>
-    </div>
-    <div style=" display: none;
-    position: fixed;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center; " id="cpa-locker-container">
-        <div id="cpa-locker-e39bddf0-c36a-11ee-a123-57064eed21d5"></div>
-        <script type="text/javascript" id="cpljs-e39bddf0-c36a-11ee-a123-57064eed21d5" src="//captchalocker.pl/iframeLoader/e39bddf0-c36a-11ee-a123-57064eed21d5?"></script>
-    </div>
 
-   
+<div class="video-container">
+    <h2>Video 1 Title</h2>
+    <video class="video" src="video1.mp4" controls></video>
+</div>
+<div class="video-container">
+    <h2>Video 2 Title</h2>
+    <video class="video" src="video1.mp4" controls></video>
+</div>
+<div class="video-container">
+    <h2>Video 3 Title</h2>
+    <video class="video" src="video3.mp4" controls></video>
+</div>
 
-    <script>
-        function showLocker() {
-            document.getElementById("cpa-locker-container").style.display = "block";
-        }
-    </script>
+<div class="scroll-indicator">
+    Swipe down to see more videos
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var controller = new ScrollMagic.Controller();
+
+        var videos = document.querySelectorAll('.video');
+
+        videos.forEach(function(video, index) {
+            new ScrollMagic.Scene({
+                triggerElement: ".video-container:nth-child(" + (index + 1) + ")",
+                triggerHook: 0.5,
+                duration: "100%"
+            })
+            .on("enter", function() {
+                videos.forEach(function(vid) {
+                    vid.pause();
+                });
+                video.play();
+            })
+            .addTo(controller);
+        });
+    });
+</script>
+
 </body>
 </html>
