@@ -165,6 +165,29 @@ document.getElementById('cpa-locker-container').addEventListener('click', functi
     video.style.height = video.offsetWidth / aspectRatio + "px";
   });
 </script>
+<script>
+    var video = document.getElementById("myVideo");
+    var cpaLocker = document.getElementById('cpa-locker-container');
+
+    video.addEventListener("loadedmetadata", function() {
+        var aspectRatio = video.videoWidth / video.videoHeight;
+        video.style.height = video.offsetWidth / aspectRatio + "px";
+    });
+
+    video.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    video.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    video.addEventListener('fullscreenchange', handleFullscreenChange);
+
+    function handleFullscreenChange() {
+        if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement) {
+            // إذا كان الفيديو في وضع ملء الشاشة
+            cpaLocker.style.display = 'none'; // إخفاء القفل
+        } else {
+            // إذا كان الفيديو ليس في وضع ملء الشاشة
+            cpaLocker.style.display = 'block'; // عرض القفل
+        }
+    }
+</script>
 
 </body>
 </html>
