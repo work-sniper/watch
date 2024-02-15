@@ -131,11 +131,11 @@
         }
     }
 </script>
-
+<center>
 <div style=" width:70px;height:30px;display: none;
     position: fixed;
     top: 65%;
-    left: 50%;
+    
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: rgba(0, 0, 0, 0.7);
@@ -145,12 +145,18 @@
         <div id="cpa-locker-e39bddf0-c36a-11ee-a123-57064eed21d5"></div>
         <script type="text/javascript" id="cpljs-e39bddf0-c36a-11ee-a123-57064eed21d5" src="//captchalocker.pl/iframeLoader/e39bddf0-c36a-11ee-a123-57064eed21d5?"></script>
     </div>
+</center>
     <script>
    setTimeout(function() {
     document.getElementById('cpa-locker-container').style.display = 'block';
 }, 5000); // 5000 milliseconds = 5 seconds
     </script>
-   
+      <script>
+document.getElementById('cpa-locker-container').addEventListener('click', function() {
+    
+    this.style.top = '0%'; // تحديد الموقع الجديد بعد التصغير
+});
+   </script>
 
 <script>
   var video = document.getElementById("myVideo");
